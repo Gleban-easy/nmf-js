@@ -18,7 +18,7 @@ class PostList extends Component {
 
 
 	componentDidMount() {
-		axios.get('http://localhost:8085/transactions', this.config)
+		axios.get('http://localhost:8081/transactions', this.config)
 		.then(response => {
 			console.log(response)
 		})
