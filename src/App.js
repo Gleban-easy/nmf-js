@@ -1,11 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PostList from './components/PostList'
+import Button from './components/Button'
+import RequestForm from './components/RequestForm'  
+
+
 
 function App() { 
   return (
-      <PostList /> 
+    <div>
+      <Button />
+      <PostList />
+      <RequestForm boxName="sender"/>
+      <RequestForm boxName="reciever"/>
+      <RequestForm boxName="value"/>
+      <RequestForm boxName="time"/>
+      <RequestForm boxName="category"/>
+    </div>
   );
 }
 

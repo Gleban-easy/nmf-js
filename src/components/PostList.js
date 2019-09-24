@@ -15,8 +15,6 @@ class PostList extends Component {
 		}
 	}
 	
-
-
 	componentDidMount() {
 		axios.get('http://localhost:8081/transactions', this.config)
 		.then(response => {
@@ -28,7 +26,7 @@ class PostList extends Component {
 	}
 
 	render() {
-		return ( <div> Lol </div> )
+		return ( <div>  </div> )
 	}
 }
 
