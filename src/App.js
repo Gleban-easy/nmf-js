@@ -4,18 +4,22 @@ import PostList from './components/PostList'
 import Button from './components/Button'
 import RequestForm from './components/RequestForm'  
 
-
-
+var senderBox = <RequestForm boxName="sender"/> 
+var receiverBox = <RequestForm boxName="receiver"/>
+var valueBox = <RequestForm boxName="value"/>
+var timeBox = <RequestForm boxName="time"/>
+var categoryBox = <RequestForm boxName="category"/>
+      
 function App() { 
   return (
     <div>
-      <Button />
       <PostList />
-      <RequestForm boxName="sender"/>
-      <RequestForm boxName="reciever"/>
-      <RequestForm boxName="value"/>
-      <RequestForm boxName="time"/>
-      <RequestForm boxName="category"/>
+      {senderBox}
+      {receiverBox}
+      {valueBox}
+      {timeBox}
+      {categoryBox}
+      <Button />
     </div>
   );
 }
