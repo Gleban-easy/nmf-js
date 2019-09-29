@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-class PostList extends Component {
+class GetTransactions extends Component {
 	constructor(props) {
 		super(props)
 		this.config = {
@@ -30,4 +30,4 @@ class PostList extends Component {
 	}
 }
 
-export default PostList
+export default GetTransactions
