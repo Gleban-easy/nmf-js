@@ -18,7 +18,7 @@ class PostList extends Component {
 	componentDidMount() {
 		axios.get('http://localhost:8081/transactions', this.config)
 		.then(response => {
-			console.log(response)
+			this.answer = JSON.parse(response)
 		})
 		.catch(error => {
 			console.log(error)
@@ -26,7 +26,7 @@ class PostList extends Component {
 	}
 
 	render() {
-		return ( <div>  </div> )
+		return ( <div>  {this.answer} </div> )
 	}
 }
 

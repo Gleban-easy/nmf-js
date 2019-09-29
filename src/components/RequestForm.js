@@ -4,8 +4,12 @@ class RequestForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
-    
+    this.boxName = props.boxName
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  getValue() {
+    return this.state.value
   }
 
   handleChange(event) {
@@ -16,8 +20,7 @@ class RequestForm extends React.Component {
     return (
         <label>
           <p>
-          {this.props.boxName}: &nbsp;
-          
+          {this.boxName}: &nbsp;
           <input type="text" value={this.state.value} onChange={this.handleChange} />
           </p>
         </label>
@@ -25,4 +28,4 @@ class RequestForm extends React.Component {
   }
 }
 
-export default RequestForm
+export default RequestFormB 
