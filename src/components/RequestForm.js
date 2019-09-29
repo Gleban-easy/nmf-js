@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from './Button'
-import Transaction from './Transaction'
 
 class RequestForm extends React.Component {
   constructor(props) {
@@ -9,6 +8,7 @@ class RequestForm extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.sendTransaction = this.sendTransaction.bind(this);
   }
 
   handleInputChange(event) {
@@ -22,12 +22,9 @@ class RequestForm extends React.Component {
   }
 
   sendTransaction() {
-    let trans = Transaction(this.state.sender, 
-                            this.state.receiver, 
-                            this.state.value, 
-                            this.state.time, 
-                            this.state.category)
-    console.log(trans.getJson())
+    
+    console.log(JSON.stringify(this.state))
+    console.log(this.state)
   }
 
   render() {
@@ -36,7 +33,7 @@ class RequestForm extends React.Component {
         <label>
           Sender: &nbsp;
           <input
-            name="Sender"
+            name="sender"
             type="text"
             value={this.state.sender}
             onChange={this.handleInputChange} />
@@ -45,7 +42,7 @@ class RequestForm extends React.Component {
         <label>
           Receiver: &nbsp;
           <input
-            name="Receiver"
+            name="receiver"
             type="text"
             value={this.state.receiver}
             onChange={this.handleInputChange} />
@@ -54,7 +51,7 @@ class RequestForm extends React.Component {
         <label>
           Value: &nbsp;
           <input
-            name="Value"
+            name="value"
             type="number"
             value={this.state.value}
             onChange={this.handleInputChange} />
@@ -63,7 +60,7 @@ class RequestForm extends React.Component {
         <label>
           Timestamp: &nbsp;
           <input
-            name="Timestamp"
+            name="timestamp"
             type="number"
             value={this.state.timestamp}
             onChange={this.handleInputChange} />
@@ -72,7 +69,7 @@ class RequestForm extends React.Component {
         <label>
           Category: &nbsp;
           <input
-            name="Category"
+            name="category"
             type="text"
             value={this.state.category}
             onChange={this.handleInputChange} />
