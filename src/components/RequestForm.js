@@ -28,4 +28,4 @@ class RequestForm extends React.Component {
   }
 }
 
-export default RequestFormB 
+export default RequestForm
