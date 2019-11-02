@@ -22,7 +22,9 @@ class RequestForm extends React.Component {
   }
 
   sendTransaction() {
-    console.log("Sending transaction: " + JSON.stringify(this.state))
+    
+    console.log("Sending transaction: " + JSON.stringify(this.state));
+    
   }
 
   render() {
