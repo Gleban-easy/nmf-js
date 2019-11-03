@@ -20,26 +20,26 @@ class GetTransactions extends Component {
 			const response = await axios.get('http://localhost:8080/transactions', this.config)
 			const transactions =[]
 			console.log(response);
-			Object.keys(response).forEach((key, index) => {
-				transactions.push()
+			response["data"].forEach((transaction) => {
+				transactions.push(transaction)
 			})
 
-			this.setState({
-				transactions	 	
-			})
+			this.setState(prevState => ({
+				transactions: [...prevState.transactions, transactions]
+			}))
 		
 		} catch (e) {
 			console.log(e);	
 		} 
 	}
 	renderTransaction() {
-		return this.state.transactions.map((transaction, index) => {
-			
+		return this.state.transactions.map((transaction) => {
+			return <div>{JSON.stringify(transaction)}</div>
 		})
 	}
 
 	render() {
-		return ( <div>{}</div> )
+		return ( <div>{this.renderTransaction()}</div> )
 	}
 }
 
