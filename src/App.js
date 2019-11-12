@@ -5,7 +5,7 @@ import Layout from './hoc/Layout/Layout'
 
 import AddTransaction from './containers/AddTransaction/AddTransaction'
 import Auth from './containers/Auth/Auth'
-import ShowTransaction from './containers/ShowTransaction/ShowTransactions'
+import ShowTransactions from './containers/ShowTransactions/ShowTransactions'
 import HomePage from './containers/HomePage/HomePage'
 
 
@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <Route path="/auth" component={Auth}/>
         <Route path="/add" component={AddTransaction}/>
-        <Route path="/get" component={ShowTransaction}/>
+        <Route path="/get" component={ShowTransactions}/>
         <Route path="/" component={HomePage}/>
         
       </Switch>

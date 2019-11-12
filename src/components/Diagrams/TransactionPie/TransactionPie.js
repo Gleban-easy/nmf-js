@@ -18,10 +18,6 @@ class TransactionPie extends Component {
           chartData: this.chartDataHandler(changeEvent.target.value)
         
         });
-        //console.log(changeEvent.target.value)
-        //console.log(this.chartDataHandler(this.state.selectedOption).labels)
-        //console.log(this.chartDataHandler(this.state.selectedOption).datasets[0].data)
-
     }
 
     createMapLabels(option) {
@@ -51,7 +47,6 @@ class TransactionPie extends Component {
     sumValueMap(data) {
         const mapLabels = new Map();
         let sum = 0;
-        console.log(data);
         for (let label of data.keys()) {
             data.get(label).forEach((object) => {
                 sum = sum + object.value;
@@ -73,17 +68,14 @@ class TransactionPie extends Component {
         const mapLabels = this.createMapLabels(option);
         for (let key of mapLabels.keys()) {
             chartData.labels.push(key);
-
         }
         for (let val of this.sumValueMap(mapLabels).values()) {
-            chartData.datasets[0].data.push(val);
+            chartData.datasets[0].data.push(val);    //I don t know how write, so chart accept dataset.
         }
         return chartData;
     }   
 
     componentWillMount() {
-        console.log(this.state.chartData.labels);
-
         this.setState({
             chartData: this.chartDataHandler('receiver')
           });
@@ -133,7 +125,7 @@ class TransactionPie extends Component {
 						</div>
 					</div>
 				</div>
-                <h1>TransactionPie</h1>
+                <h1>TransactionPie{selectedOption}</h1>
                 <Pie
                     data={{
                         labels: this.state.chartData.labels,
