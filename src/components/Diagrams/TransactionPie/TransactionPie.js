@@ -18,9 +18,6 @@ class TransactionPie extends Component {
           chartData: this.chartDataHandler(changeEvent.target.value)
         
         });
-        //console.log(changeEvent.target.value)
-        //console.log(this.chartDataHandler(this.state.selectedOption).labels)
-        //console.log(this.chartDataHandler(this.state.selectedOption).datasets[0].data)
 
     }
 
@@ -133,7 +130,7 @@ class TransactionPie extends Component {
 						</div>
 					</div>
 				</div>
-                <h1>TransactionPie</h1>
+                <h1>Transaction by {this.state.selectedOption}</h1>
                 <Pie
                     data={{
                         labels: this.state.chartData.labels,
