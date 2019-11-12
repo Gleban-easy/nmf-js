@@ -20,7 +20,7 @@ class ShowTransactions extends Component {
 	
 	async componentDidMount() {
 		try{
-			const response = await axios.get('http://localhost:8080/transactions', this.config)
+			const response = await axios.get('http://localhost:8080/transactions', this.config) //I don t find valid adress 
 			const transactions =[]
 			console.log(response);
 			response["data"].forEach((transaction) => {

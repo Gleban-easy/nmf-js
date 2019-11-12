@@ -15,7 +15,7 @@ class TransactionPie extends Component {
     handleOptionChange(changeEvent) {
 		this.setState({
           selectedOption: changeEvent.target.value,
-          chartData: this.chartDataHandler(changeEvent.target.value)
+          chartData: this.chartDataHandler(changeEventUniversity.target.value)
         
         });
     }
