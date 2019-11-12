@@ -15,7 +15,7 @@ class TransactionPie extends Component {
     handleOptionChange(changeEvent) {
 		this.setState({
           selectedOption: changeEvent.target.value,
-          chartData: this.chartDataHandler(changeEventUniversity.target.value)
+          chartData: this.chartDataHandler(changeEvent.target.value)
         
         });
     }
@@ -56,22 +56,35 @@ class TransactionPie extends Component {
         }
         return mapLabels;
     }
+    dynamicColor() {
+        let letters = '0123456789ABCDEF'.split('');
+        let color = '#';
+        for (let i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
     chartDataHandler(option) {
         const chartData = {
             labels: [],
             datasets: [{
                 data: [],   
-                backgroundColor: ['green', 'red', 'blue', 'yellow', 'black']
+                backgroundColor: []
             }]  
         };
         const mapLabels = this.createMapLabels(option);
         for (let key of mapLabels.keys()) {
-            chartData.labels.push(key);
+            chartData.labels.push(key);        
         }
         for (let val of this.sumValueMap(mapLabels).values()) {
+            let dynamicColor = this.dynamicColor();            
             chartData.datasets[0].data.push(val);    //I don t know how write, so chart accept dataset.
+            if(chartData.datasets[0].backgroundColor.indexOf(dynamicColor != true)) {
+                chartData.datasets[0].backgroundColor.push(dynamicColor);
+            }
         }
+
         return chartData;
     }   
 
@@ -125,7 +138,7 @@ class TransactionPie extends Component {
 						</div>
 					</div>
 				</div>
-                <h1>TransactionPie{selectedOption}</h1>
+                <h1>TransactionPie {this.state.selectedOption}</h1>
                 <Pie
                     data={{
                         labels: this.state.chartData.labels,
