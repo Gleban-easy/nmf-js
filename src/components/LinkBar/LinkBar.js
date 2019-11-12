@@ -4,7 +4,7 @@ const links = [
     {to: '/', label: 'Home page', exact: 'true' },
     {to: '/auth', label: 'Autorization', exact: 'false' },
     {to: '/add', label: 'Add transaction', exact: 'false' },
-    {to: '/get', label: 'Get transaction', exact: 'false' }
+    {to: '/get', label: 'Show transactions', exact: 'false' }
 
 ];
 

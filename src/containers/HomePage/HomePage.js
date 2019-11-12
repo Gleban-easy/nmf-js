@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import LinkBar from '../../components/Navigation/LinkBar'
+import LinkBar from '../../components/LinkBar/LinkBar'
 
 class HomePage extends Component {
     render() {
