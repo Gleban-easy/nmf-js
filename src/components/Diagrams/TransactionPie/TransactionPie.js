@@ -6,9 +6,8 @@ class TransactionPie extends Component {
 		super(props)
         this.state = {
 			selectedOption: 'receiver',
-            chartData: {}
+            chartData: this.chartDataHandler('receiver')
         }
-       
         this.handleOptionChange = this.handleOptionChange.bind(this);
 
     }
@@ -56,11 +55,12 @@ class TransactionPie extends Component {
         }
         return mapLabels;
     }
+
     dynamicColor() {
-        let letters = '0123456789ABCDEF'.split('');
+        let letters = '1234567ABCDE'.split('');
         let color = '#';
-        for (let i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 12)];
         }
         return color;
     }
@@ -84,17 +84,19 @@ class TransactionPie extends Component {
                 chartData.datasets[0].backgroundColor.push(dynamicColor);
             }
         }
-
+        
         return chartData;
     }   
+    componentWillMount(){
+        console.log("will")
 
-    componentWillMount() {
-        this.setState({
-            chartData: this.chartDataHandler('receiver')
-          });
     }
+
     
     render() {
+        console.log("render")
+        console.log(this.state.chartData)
+
         return( 
             <div>
                 <div className="container">

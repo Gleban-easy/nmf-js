@@ -26,7 +26,7 @@ class AddTransaction extends Component {
         console.log("Sending transaction: " + JSON.stringify(this.state));
         axios({
             method: 'post',
-            url: 'http://localhost:8081/add',
+            url: 'http://localhost:8080/transactions/add',
             data: this.state
         })
         
