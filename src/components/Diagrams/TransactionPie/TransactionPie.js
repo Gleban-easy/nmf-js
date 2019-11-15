@@ -1,12 +1,17 @@
 import { Pie } from 'react-chartjs-2';
 import React, { Component } from 'react';
 
+import axios from 'axios'
+
+
 class TransactionPie extends Component {
     constructor(props) {
 		super(props)
         this.state = {
-			selectedOption: 'receiver',
-            chartData: this.chartDataHandler('receiver')
+            isLoading: false,
+            transactions: [],
+            selectedOption: '',
+            chartData: {}
         }
         this.handleOptionChange = this.handleOptionChange.bind(this);
 
@@ -19,31 +24,62 @@ class TransactionPie extends Component {
         });
     }
 
-    createMapLabels(option) {
-        const mapLabels = new Map();
-        this.props.transactions.forEach((object) => {
+    componentDidMount() {
+        this.getTransactions();
 
-            if(option === 'receiver') {
-                if(mapLabels.has(object.receiver) )
-                    mapLabels.get(object.receiver).push(object);
-                else(mapLabels.set(object.receiver, [object]));
-            }
-            if(option === 'time') {
-                if(mapLabels.has(object.int) )
-                    mapLabels.get(object.int).push(object);
-                else(mapLabels.set(object.int, [object]));
-            }
-            if(option === 'category') {
-                if(mapLabels.has(object.category) )
-                    mapLabels.get(object.category).push(object);
-                else(mapLabels.set(object.category, [object]));
-            }
-        });
-    
+    }
+
+    getTransactions() {
+        try{
+			axios.get('http://localhost:8080/transactions/filter', this.config).then((response) => {
+				const transactions = []
+				response["data"].forEach((transaction) => {
+					transactions.push(transaction)
+				})
+				this.setState({
+					transactions: transactions,
+					isLoading: true
+                })
+                if(this.state.isLoading) {
+                    this.setState({
+                        selectedOption: 'receiver',
+                        chartData: this.chartDataHandler('receiver')
+                
+                    })
+                }
+			}) 
+		} catch (e) {
+			console.log(e);	
+		} 
+    }
+    createMapLabels(option) {
+
+        const mapLabels = new Map();
+
+        this.state.transactions.forEach((object) => {
+                if(option === 'receiver') {
+                    if(mapLabels.has(object.receiver) ) {
+                        mapLabels.get(object.receiver).push(object);
+                    }
+                    else(mapLabels.set(object.receiver, [object]));
+                }
+                if(option === 'time') {
+                    if(mapLabels.has(object.int) )
+                        mapLabels.get(object.int).push(object);
+                    else(mapLabels.set(object.int, [object]));
+                }
+                if(option === 'category') {
+                    if(mapLabels.has(object.category) )
+                        mapLabels.get(object.category).push(object);
+                    else(mapLabels.set(object.category, [object]));
+                }
+            });
+
         return mapLabels;
     }
 
     sumValueMap(data) {
+
         const mapLabels = new Map();
         let sum = 0;
         for (let label of data.keys()) {
@@ -66,6 +102,7 @@ class TransactionPie extends Component {
     }
 
     chartDataHandler(option) {
+
         const chartData = {
             labels: [],
             datasets: [{
@@ -78,25 +115,15 @@ class TransactionPie extends Component {
             chartData.labels.push(key);        
         }
         for (let val of this.sumValueMap(mapLabels).values()) {
-            let dynamicColor = this.dynamicColor();            
-            chartData.datasets[0].data.push(val);    //I don t know how write, so chart accept dataset.
+            let dynamicColor = this.dynamicColor();
+            chartData.datasets[0].data.push(val);
             if(chartData.datasets[0].backgroundColor.indexOf(dynamicColor != true)) {
                 chartData.datasets[0].backgroundColor.push(dynamicColor);
             }
         }
-        
         return chartData;
     }   
-    componentWillMount(){
-        console.log("will")
-
-    }
-
-    
     render() {
-        console.log("render")
-        console.log(this.state.chartData)
-
         return( 
             <div>
                 <div className="container">
